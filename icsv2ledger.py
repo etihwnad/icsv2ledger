@@ -193,7 +193,7 @@ def read_mapping_file(map_file):
 
 def append_mapping_file(map_file, desc, payee, account, tags):
     if map_file:
-        with open(map_file, 'ab') as f:
+        with open(map_file, 'a') as f:
             writer = csv.writer(f)
             writer.writerow([desc, payee, account] + tags)
 
