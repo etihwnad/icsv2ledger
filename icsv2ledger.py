@@ -421,8 +421,11 @@ def main():
             sys.stdout.write("\n".join(ledger_lines))
 
     def process_csv_lines(csv_lines):
-        dialect = csv.Sniffer().sniff(
-            "\n".join(csv_lines[options.skip_lines:options.skip_lines + 3]))
+        try:
+            dialect = csv.Sniffer().sniff(
+                "\n".join(csv_lines[options.skip_lines:options.skip_lines + 3]))
+        except csv.Error:
+            dialect = 'excel'
         bank_reader = csv.reader(csv_lines[options.skip_lines:], dialect)
 
         ledger_lines = []
