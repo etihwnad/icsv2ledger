@@ -343,6 +343,11 @@ def main():
             pattern = m[0]
             if isinstance(pattern, str):
                 if entry.desc == pattern:
+                    print entry.desc
+                    print m
+                    # sometimes m[3] is not present
+                    if len(m) < 4:
+                        m = (m[0], m[1], m[2], [])
                     payee, account, tags = m[1], m[2], m[3]
                     found = True  # do not break here, later mapping must win
             else:
